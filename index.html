@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Student Productivity Hub | Tools for Smarter Studying</title>
+  <meta name="description" content="Student Productivity Hub is a free, all-in-one web app with a to-do list, Pomodoro timer, CGPA calculator and study tips." />
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  
+  <link rel="stylesheet" href="style.css" />
+  
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
+</head>
+<body>
+  <div class="background-effects">
+    <div class="blob-bg blob-1"></div>
+    <div class="blob-bg blob-2"></div>
+  </div>
+
+  <!-- NAVBAR -->
+  <header class="navbar glass">
+    <div class="navbar__inner container">
+      <a href="#home" class="navbar__logo">Productivity<span>Hub</span></a>
+      <nav class="navbar__nav" id="primaryNav">
+        <a href="#home">Home</a>
+        <a href="#tools">Tools</a>
+        <a href="#study-tips">Tips</a>
+        <a href="#stats">Stats</a>
+      </nav>
+      <div class="navbar__actions">
+        <button id="themeToggle" class="btn-icon" aria-label="Toggle dark mode">
+          <span id="themeIcon">🌙</span>
+        </button>
+        <button id="navToggle" class="btn-icon hamburger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section id="home" class="hero container">
+      <div class="hero__content">
+        <div class="badge">✨ Enhance your workflow</div>
+        <h1 class="hero__title">Study Smarter.<br><span class="text-gradient">Achieve More.</span></h1>
+        <p class="hero__subtitle">Powerful, beautifully designed tools to help students manage time, tasks, and academics seamlessly.</p>
+        <button id="exploreBtn" class="btn btn-primary btn-glow">Get Started 🚀</button>
+      </div>
+      <div class="hero__art">
+        <div class="hero-art-container">
+          <div class="art-pulse"></div>
+          
+          <!-- Todo Card -->
+          <div class="art-floating-card art-todo glass-card">
+            <div class="art-header">
+              <div class="art-icon">📝</div>
+              <div class="art-title">Tasks</div>
+            </div>
+            <div class="art-task-list">
+              <div class="art-task done"></div>
+              <div class="art-task done"></div>
+              <div class="art-task"></div>
+            </div>
+          </div>
+          
+          <!-- Pomodoro Card -->
+          <div class="art-floating-card art-timer glass-card">
+            <div class="art-timer-ring">
+              <span>25:00</span>
+            </div>
+          </div>
+
+          <!-- Stat Badge -->
+          <div class="art-floating-card art-stat glass-card">
+            <div class="art-stat-icon">🔥</div>
+            <div class="art-stat-details">
+              <span class="art-stat-value text-gradient">95%</span>
+              <span class="art-stat-label">Productivity</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TOOLS -->
+    <section id="tools" class="section container">
+      <div class="section-header">
+        <h2 class="section__title">Your Productivity Toolkit</h2>
+        <p class="section__subtitle">Everything you need in one place.</p>
+      </div>
+
+      <div class="tools-grid">
+        <!-- TO-DO LIST -->
+        <article class="card glass-card" id="todoCard">
+          <div class="card-header">
+            <div class="card-icon">📝</div>
+            <h3 class="card__title">Tasks</h3>
+          </div>
+          <form id="todoForm" class="todo-form">
+            <input type="text" id="todoInput" placeholder="What needs to be done?" autocomplete="off" required />
+            <button type="submit" class="btn btn-primary">+</button>
+          </form>
+          <ul id="todoList" class="todo-list"></ul>
+          <div class="todo-summary">
+            <span><strong id="completedTasks">0</strong> / <strong id="totalTasks">0</strong></span> completed
+          </div>
+        </article>
+
+        <!-- POMODORO -->
+        <article class="card glass-card pomodoro-card" id="pomodoroCard">
+          <div class="card-header">
+            <div class="card-icon">⏱️</div>
+            <h3 class="card__title">Focus</h3>
+          </div>
+          <div class="pomodoro">
+            <div class="pomodoro__ring">
+              <div class="pomodoro__display" id="pomodoroDisplay">25:00</div>
+            </div>
+            <p class="pomodoro__message" id="pomodoroMessage"></p>
+            <div class="pomodoro__controls">
+              <button id="startTimer" class="btn btn-primary">Start</button>
+              <button id="pauseTimer" class="btn btn-secondary">Pause</button>
+              <button id="resetTimer" class="btn btn-ghost">Reset</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- CGPA -->
+        <article class="card glass-card" id="cgpaCard">
+          <div class="card-header">
+            <div class="card-icon">🎓</div>
+            <h3 class="card__title">Grades</h3>
+          </div>
+          <div class="cgpa-result">
+            <span class="cgpa-label">Current CGPA</span>
+            <strong id="cgpaValue" class="text-gradient">0.00</strong>
+          </div>
+          <form id="cgpaForm" class="cgpa-form">
+            <input type="text" id="subjectName" placeholder="Subject" required />
+            <div class="cgpa-form-row">
+              <input type="number" id="subjectCredits" placeholder="Credits" min="1" max="10" required />
+              <input type="number" id="subjectGrade" placeholder="Grade (0-10)" min="0" max="10" step="0.1" required />
+            </div>
+            <button type="submit" class="btn btn-primary w-full">Add Subject</button>
+          </form>
+          <ul id="subjectList" class="subject-list"></ul>
+          <button id="resetCgpa" class="btn btn-ghost w-full">Clear All</button>
+        </article>
+
+        <!-- QUICK TIP -->
+        <article class="card glass-card" id="studyTipCard">
+          <div class="card-header">
+            <div class="card-icon">💡</div>
+            <h3 class="card__title">Inspiration</h3>
+          </div>
+          <div class="study-tip-box">
+            <p id="studyTipText">Ready to level up? Discover a new tip!</p>
+          </div>
+          <button id="randomTipBtn" class="btn btn-secondary w-full mt-auto">Inspire Me</button>
+        </article>
+      </div>
+    </section>
+
+    <!-- STATS -->
+    <section id="stats" class="section container">
+      <div class="section-header">
+        <h2 class="section__title">Quick Stats</h2>
+      </div>
+      <div class="stats-grid">
+        <div class="stat-card glass-card">
+          <div class="stat-icon">✅</div>
+          <span class="stat-card__value" id="statTasksCompleted">0</span>
+          <span class="stat-card__label">Tasks Done</span>
+        </div>
+        <div class="stat-card glass-card">
+          <div class="stat-icon">⏳</div>
+          <span class="stat-card__value" id="statStudySessions">0</span>
+          <span class="stat-card__label">Sessions</span>
+        </div>
+        <div class="stat-card glass-card">
+          <div class="stat-icon">📚</div>
+          <span class="stat-card__value" id="statSubjects">0</span>
+          <span class="stat-card__label">Subjects</span>
+        </div>
+        <div class="stat-card glass-card">
+          <div class="stat-icon">🔥</div>
+          <span class="stat-card__value text-gradient" id="statProductivity">0%</span>
+          <span class="stat-card__label">Score</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- STUDY TIPS -->
+    <section id="study-tips" class="section container">
+      <div class="section-header">
+        <h2 class="section__title">Study Strategies</h2>
+      </div>
+      <div class="tips-grid" id="tipsGrid"></div>
+    </section>
+  </main>
+
+  <footer class="footer container">
+    <p>&copy; <span id="currentYear"></span> ProductivityHub. Designed for success.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
