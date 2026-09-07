@@ -423,16 +423,32 @@ input { font-family: inherit; }
   .hamburger { display: flex; }
   
   /* Make the floating cards responsive on mobile */
-  .hero__art { min-height: 350px; }
-  .hero-art-container {
-    transform: scale(0.8);
-    transform-origin: center top;
+  .hero__art { min-height: 400px; }
+  .hero-art-container { width: 100%; max-width: 320px; margin: 0 auto; }
+  
+  .art-todo {
+    width: 190px; top: 0; left: 0; padding: 1.25rem;
   }
+  .art-timer {
+    width: 140px; height: 140px; top: 25%; right: 0; padding: 1.25rem;
+  }
+  .art-timer-ring { width: 100px; height: 100px; }
+  .art-timer-ring span { font-size: 1.25rem; }
+  
+  .art-stat {
+    bottom: 5%; left: 0; right: 0; margin: 0 auto; width: max-content; padding: 1.25rem;
+  }
+  .art-stat-icon { font-size: 1.8rem; }
+  .art-stat-value { font-size: 1.4rem; }
+  .art-pulse { width: 200px; height: 200px; top: 25%; left: 10%; }
 }
 
-@media (max-width: 480px) {
-  .hero__art { min-height: 280px; }
-  .hero-art-container {
-    transform: scale(0.65);
-  }
+@media (max-width: 360px) {
+  .hero-art-container { max-width: 280px; }
+  .art-todo { width: 170px; }
+  .art-timer { width: 120px; height: 120px; }
+  .art-timer-ring { width: 80px; height: 80px; }
+  .art-timer-ring span { font-size: 1rem; }
+  .art-title { font-size: 0.9rem; }
+  .art-task-list { padding-left: 18px; }
 }
